@@ -1,0 +1,6 @@
+varchar(255): cpf,rg,cep
+decimal
+char(255)
+bit
+int
+date time

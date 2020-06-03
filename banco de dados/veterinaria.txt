@@ -1,0 +1,80 @@
+
+C:\Users\Mauro>cd..
+
+C:\Users>cd..
+
+C:\>cd xampp
+
+C:\xampp>cd mysql
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root
+
+
+MariaDB [(none)]> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| concesionaria      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.09 sec)
+
+MariaDB [(none)]> drop concesionaria
+    -> ;
+
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
++--------------------+
+4 rows in set (0.00 sec)
+
+MariaDB [(none)]> create database veterinaria;
+
+MariaDB [(none)]> use veterinaria
+Database changed
+MariaDB [veterinaria]> create table dono(
+    -> coddono int primary key auto_increment,
+    -> nome varchar(255),
+    -> cpf varchar(20) unique,
+    -> telefone varchar(20));
+
+
+MariaDB [veterinaria]> show tables
+    -> ;
++-----------------------+
+| Tables_in_veterinaria |
++-----------------------+
+| dono                  |
++-----------------------+
+
+
+MariaDB [veterinaria]> create table animal(
+    -> codanimal int primary key auto_increment,
+    -> nome varchar(255),
+    -> raca varchar(255),
+    -> dono int,
+    -> foreign key (dono) references dono(coddono));
+
+MariaDB [veterinaria]> show tables
+    -> ;
++-----------------------+
+| Tables_in_veterinaria |
++-----------------------+
+| animal                |
+| dono                  |
++-----------------------+
+
+MariaDB [veterinaria]>

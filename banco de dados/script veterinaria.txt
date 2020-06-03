@@ -1,0 +1,79 @@
+VETERINARIA
+CREATE DATABASE veterinaria
+
+CREATE TABLE atendente (
+codAtendente Texto(1) PRIMARY KEY,
+rg varchar(255),
+cpf varchar(255) unique,
+telcel varchar(255),
+telfixo varchar(255),
+nome varchar(255)
+)
+
+CREATE TABLE veterinario (
+codVete int PRIMARY KEY,
+num varchar(255),
+logradouro varchar(255),
+complemento varchar(255),
+bairro varchar(255),
+cidade varchar(255),
+uf char(2),
+cep varchar(255),
+nome varchar(255),
+telfixo varchar(255),
+email varchar(255) unique,
+crmv varchar(255),
+telcel varchar(255),
+cpf varchar(255) unique
+)
+
+CREATE TABLE animal (
+codAnimal Texto(1) PRIMARY KEY,
+especie varchar(255),
+raca varchar(255),
+cor varchar(255),
+sexo varchar(255),
+peso decimal(7,2),
+coddono int
+)
+
+CREATE TABLE consulta_agenda (
+codConsulta int PRIMARY KEY,
+data date,
+preco decimal(7,2),
+diagnostico varchar(255),
+hora time,
+codAnimal Texto(1),
+codAtendente Texto(1),
+codVete int,
+FOREIGN KEY(codAnimal) REFERENCES animal (codAnimal),
+FOREIGN KEY(codAtendente) REFERENCES atendente (codAtendente),
+FOREIGN KEY(codVete) REFERENCES veterinario (codVete)
+)
+
+CREATE TABLE dono (
+coddono int PRIMARY KEY,
+nome varchar(255),
+email varchar(255),
+telfixo varchar(255),
+cpf varchar(255) unique,
+rg varchar(255) unique,
+num varchar(255),
+uf char(2),
+cep varchar(255),
+logradouro varchar(255),
+complemento varchar(255),
+cidade varchar(255),
+bairro varchar(255)
+)
+
+CREATE TABLE paga (
+codConsulta int,
+coddono int,
+FOREIGN KEY(codConsulta) REFERENCES consulta_agenda (codConsulta),
+FOREIGN KEY(coddono) REFERENCES dono (coddono)
+)
+
+ALTER TABLE animal ADD FOREIGN KEY(coddono) REFERENCES dono (coddono)
+
+FARMACIA

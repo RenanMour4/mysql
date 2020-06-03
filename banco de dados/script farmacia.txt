@@ -1,0 +1,40 @@
+create database farmácia
+
+CREATE TABLE produto_remedio (
+codProduto int PRIMARY KEY,
+fabricante Varchar(255),
+nome varchar(255),
+generico varchar(255),
+preco decimal(7,2)
+)
+
+CREATE TABLE compra_venda (
+codCompra int PRIMARY KEY,
+hora time,
+total decimal(7,2),
+data date,
+cpf varchar(255)unique,
+codAtendente int
+)
+
+CREATE TABLE caixa_atendente (
+codAtendente int PRIMARY KEY,
+nome varchar(255),
+cpf varchar(255) unique,
+telfixo varchar(255),
+telcel varchar(255),
+salario decimal(7,2),
+email varchar(255) unique,
+rg varchar(255)
+) unique
+
+CREATE TABLE Relação_2+itens_compra (
+qtde int,
+codCompra int,
+codProduto int,
+total_uni decimal(7,2),
+FOREIGN KEY(codCompra) REFERENCES compra_venda (codCompra),
+FOREIGN KEY(codProduto) REFERENCES produto_remedio (codProduto)
+)
+
+ALTER TABLE compra_venda ADD FOREIGN KEY(codAtendente) REFERENCES caixa_atendente (codAtendente)

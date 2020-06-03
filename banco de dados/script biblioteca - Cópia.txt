@@ -1,0 +1,73 @@
+DDl
+CREATE TABLE livro (
+titulo varchar(255),
+autor varchar(255),
+genero varchar(255),
+editora varchar(255),
+codlivro int PRIMARY KEY auto_increment);
+
+
+CREATE TABLE bibliotecario (
+codfuncionario int PRIMARY KEY auto_increment ,
+nome varchar(255),
+email varchar(255) unique,
+rg varchar(255),
+dataNasci int,
+cpf varchar(255) unique,
+telefone varchar(255),
+uf char(2),
+cidade varchar(255),
+bairro varchar(255),
+complemento varchar(255),
+numero int,
+logradouro varchar(255),
+cep int);
+
+
+CREATE TABLE cliente (
+codcli int PRIMARY KEY AUTO_INCREMENT,
+dataNasc date,
+telefone varchar(100),
+nome varchar(100),
+turma varchar(15),
+email varchar(255) unique,
+ra varchar(255));
+
+
+CREATE TABLE emprestimoDevolucao (
+dataDevolucao date,
+dataEmprestimo date,
+codEmprestimo int PRIMARY KEY AUTO_INCREMENT,
+codcli int,
+codlivro int,
+codfuncionario int,
+FOREIGN KEY(codlivro) REFERENCES livro (codlivro),
+FOREIGN KEY(codcli) REFERENCES cliente (codcli),
+FOREIGN KEY(codfuncionario) REFERENCES bibliotecario (codfuncionario));
+
+)
+
+
+DML
+INSERT INTO cliente(nome, email, telefone, turma, datanasc) VALUES
+('yudi','yudi@hotmail.com','11-4002-0922','3D','1992-07-04'),
+('pedro','pedroka@hotmail.com','11-12546-7589','2A','1999-08-12'),
+('mikael','miel@hotmail.com','11-87654-8730','1C','2000-7-30'),
+('jose','jose@hotmail.com','11-15495-3432','5A','2001-10-9'),
+('maria','mara@hotmail.com','11-76905-6543','9B','1900-08-7'),
+('joana','jo@hotmail.com','11-45680-5438','2D','2003-08-4'),
+('erika','erika@hotmail.com','11-54789-0943','7B','2005-04-07');
+
+insert INTO bibliotecario(NOME, email, cpf, telefone, cidade, uf, dataNasci) VALUES
+('Rodrigo','rodri@gmail.com','555.444.333-00','11-12345-4567','Maua','sp','1999-10-07'),
+('Raissa','raiss@gmail.com','095.987.132-00','11-98345-4568','maua','sp','1999-10-07'),
+('roseneia','rosenei@gmail.com','876.342.245-87','11-45367-6759','maua','sp','1950-1-25');
+
+INSERT INTO emprestimoDevolucao (codfuncionario, codlivro, dataEmprestimo, dataDevolucao, codcli) VALUES
+(1,1,'2020-01-04','2020-02-04',1),
+(1,2,'2020-01-25','2020-02-25',2),
+(2,3,'2020-01-03','2020-02-03',3),
+(2,4,'2020-01-26','2020-02-26',4),
+(3,5,'2020-01-22','2020-02-22',5),
+(1,6,'2020-01-09','2020-02-09',6),
+(2 , 7, '2020-01-10', '2020-02-10' ,7);
