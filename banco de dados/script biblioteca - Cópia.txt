@@ -24,8 +24,8 @@ logradouro varchar(255),
 cep int);
 
 
-CREATE TABLE cliente (
-codcli int PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE aluno (
+codAluno int PRIMARY KEY AUTO_INCREMENT,
 dataNasc date,
 telefone varchar(100),
 nome varchar(100),
@@ -42,14 +42,26 @@ codcli int,
 codlivro int,
 codfuncionario int,
 FOREIGN KEY(codlivro) REFERENCES livro (codlivro),
-FOREIGN KEY(codcli) REFERENCES cliente (codcli),
+FOREIGN KEY(codcli) REFERENCES aluno (codAluno),
 FOREIGN KEY(codfuncionario) REFERENCES bibliotecario (codfuncionario));
 
 )
 
 
 DML
-INSERT INTO cliente(nome, email, telefone, turma, datanasc) VALUES
+
+insert into livro (titulo,autor,genero,editora)	
+(oi	oliver	terror	panini)	
+(tchau	oliver	terror	panini)	
+('a volta por cima','eduardo','superacao,'moderna')		
+('100','joao','suspense','moderna')	
+('vedades','mariana','romance','panini')	
+('historia','claudio','didatico','moderna')	
+('matematica','fernanda','didatico','maderna');
+
+
+
+INSERT INTO aluno(nome, email, telefone, turma, datanasc) VALUES
 ('yudi','yudi@hotmail.com','11-4002-0922','3D','1992-07-04'),
 ('pedro','pedroka@hotmail.com','11-12546-7589','2A','1999-08-12'),
 ('mikael','miel@hotmail.com','11-87654-8730','1C','2000-7-30'),
@@ -71,3 +83,14 @@ INSERT INTO emprestimoDevolucao (codfuncionario, codlivro, dataEmprestimo, dataD
 (3,5,'2020-01-22','2020-02-22',5),
 (1,6,'2020-01-09','2020-02-09',6),
 (2 , 7, '2020-01-10', '2020-02-10' ,7);
+
+
+insert into livro (titulo,autor,genero,editora)	
+(oi	oliver	terror	panini)	
+(tchau	oliver	terror	panini)	
+('a volta por cima','eduardo','superacao,'moderna')		
+('100','joao','suspense','moderna')	
+('vedades','mariana','romance','panini')	
+('historia','claudio','didatico','moderna')	
+('matematica','fernanda','didatico','maderna')	
+
